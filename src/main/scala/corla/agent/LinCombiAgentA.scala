@@ -1,9 +1,8 @@
-package corla.rl.v7
-package agent
+package corla.agent
 
 import corla.memory.Memory3
 import corla.misc.PDF
-import corla.rl.{Reward, Next}
+import corla._
 
 import scalaz._
 import syntax.monad._

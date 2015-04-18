@@ -1,10 +1,11 @@
-package corla.rl.v7
+package corla
 
 import corla.misc.PDF
 
-import scalaz._, Maybe._
+import scalaz.Maybe._
+import scalaz._
 
-trait v7syntax {
+trait syntax {
 
   implicit class gpsyntax[S,A,M,P[_]](π: GenPolicy[S,A,M,P]) {
     def policyA: GenPolicyA[S,A,M,P] = (m,s) => _ => π(m,s)

@@ -1,15 +1,13 @@
-package corla.rl.v7
+package corla
 
 /**
  * Created by arya on 12/19/14.
  */
 
-import corla.memory.{PrimitiveMemory, EmptyMemory3, Memory3}
-import corla.rl.Next
+import corla.action.AbstractAction
+import corla.memory.{EmptyMemory3, Memory3, PrimitiveMemory}
 
-import scalaz._
-import scalaz.syntax.applicative._
-import scalaz.syntax.std.boolean._
+import scalaz._, Scalaz._
 
 trait AbstractSMOption[S,A,P[_]] {
   type M

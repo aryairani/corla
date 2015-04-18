@@ -1,12 +1,10 @@
-package corla.rl.v7
+package corla
 
-import corla.misc.NESet
-import NESet._
-import corla.rl.{Reward, Next}
+import corla.misc.NESet._
 
 import scalaz.Maybe
 
-trait v7types {
+trait types {
   type Actions[A] = NESet[A]
 
   type GenPolicy[S,A,M,P[_]] = (M,S) => P[A]
@@ -22,4 +20,12 @@ trait v7types {
 
   type History[S,A] = Vector[Experience[S,A]]
   type HistoryA[S,A] = Vector[ExperienceA[S,A]]
+
+  type PrefS[S] = S => Probability
+  type PrefSA[S,A] = (S,A) => Probability
+
+  type Probability = Double
+  type Reward = Double
+  type Utility = Reward
+
 }

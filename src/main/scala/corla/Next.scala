@@ -1,6 +1,4 @@
-package corla.rl
-
-import corla.rl.v7._
+package corla
 
 import scalaz.Maybe
 

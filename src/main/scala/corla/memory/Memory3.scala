@@ -1,8 +1,8 @@
 package corla.memory
 
+import corla.Next
 import corla.memory.Memory3.mapExperience2
-import corla.rl._
-import corla.rl.v7._
+import corla._
 
 import scalaz._
 import scalaz.syntax.traverse._

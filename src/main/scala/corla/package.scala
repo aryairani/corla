@@ -1,11 +1,13 @@
-import scalaz._, Ordering._, Maybe._
+import corla.misc.NESet._
+import corla.misc.PDF, PDF.pdfSyntax
+
+import scalaz._, Ordering._, Maybe._, Scalaz._
 import monocle.Lens
 
 /**
  * Created by arya on 12/8/14.
  */
-package object corla {
-  type Probability = Double
+package object corla extends mixfunctions with syntax with types {
   implicit val probabilityAdditiveMonoid = new Monoid[Probability] {
     def zero: Probability = 0
 
@@ -52,5 +54,22 @@ package object corla {
   def mapWith[A,B](default:B) = Map[A,B]().withDefaultValue(default)
   def mapLensDefault[K, V](k: K, default: V) =
     Lens[Map[K, V],V](_.getOrElse(k,default))(v => _.updated(k,v).withDefaultValue(default))
+
+
+  def optionIsAvailable[S,A,M,P[_]:PDF](m: M, s: S)(o: GenOption[S,A,M,P]): Boolean =
+    o(m,s)(empty) < 1
+
+  def availableOptions[S,A,M,P[_]:PDF](m: M, s: S, allOptions: NESet[GenOption[S,A,M,P]]): Set[GenOption[S,A,M,P]] =
+    allOptions.filter(optionIsAvailable(m,s))
+
+  def checkAction[A](as: Actions[A])(a: A): A = { assert(as.contains(a)); a }
+
+  def averagePrefs[F[_]:Foldable1,S,A](prefs: F[PrefSA[S,A]]): PrefSA[S,A] =
+    (s,a) => prefs.foldMap1(_.apply(s,a) -> 1) match {
+      case (sum,count) => sum / count
+    }
+
+  def prefFromConstraintEnsemble[F[_]:Functor:Foldable1,S,A](cs: F[ConstraintSA[S,A]]): PrefSA[S,A] =
+    averagePrefs(cs.map(_.toPref))
 }
 

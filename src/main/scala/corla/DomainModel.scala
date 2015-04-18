@@ -1,6 +1,4 @@
-package corla.rl.v7
-
-import corla.rl.{Reward, Next}
+package corla
 
 trait GenerativeModel3[F[_],S,A] {
   def sample(s: S, a: A): F[(Reward,Next[S,A])]

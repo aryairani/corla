@@ -1,7 +1,7 @@
-package corla.rl.v7.qlearning
+package corla.qlearning
 
 import corla.memory.{NativeSingle3, Memory3}
-import corla.rl.Utility
+import corla.Utility
 
 /**
 * Created by arya on 12/20/14.

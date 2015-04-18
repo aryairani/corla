@@ -1,17 +1,12 @@
-package corla.rl.v7.qlearning
+package corla.qlearning
 
-import corla.mapLensDefault
+import corla.{Reward, Utility, Next, mapLensDefault}
 import corla.memory.{EmptyMemory3, NativeSingle3, Memory3}
 import corla.misc.{NESet, ScalazLensCompatibility}
-import corla.rl._
 import monocle.macros.Lenses
 import NESet._
 
-import scalaz.{State,Traverse}
-import scalaz.syntax.foldable1._
-import scalaz.syntax.traverse._
-import scalaz.std.set._
-import scalaz.std.anyVal._
+import scalaz._, Scalaz._
 import ScalazLensCompatibility._
 /**
 * Created by arya on 12/20/14.

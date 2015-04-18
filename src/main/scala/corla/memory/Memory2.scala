@@ -1,6 +1,6 @@
 package corla.memory
 
-import corla.rl._
+import corla.Reward
 
 import scalaz._
 

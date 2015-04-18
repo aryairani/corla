@@ -1,8 +1,8 @@
-package corla.rl.v7
+package corla
 
 import corla.misc.{NESet, DiscreteH}
-import corla.rl.{Reward, Next}
-import corla.rl.v7.agent.AgentA
+import corla.Reward
+import corla.agent.AgentA
 import qlearning.{QLearner, StationaryQLearner}
 
 import scalaz._, Id._, Maybe._

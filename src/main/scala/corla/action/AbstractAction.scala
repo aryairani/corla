@@ -1,10 +1,10 @@
-package corla.rl.v7
+package corla.action
 
+import corla._
 import corla.memory.Memory3
-import corla.rl.Next
 
 import scalaz._
-import syntax.monad._
+import scalaz.syntax.monad._
 
 /* In order to unify primitives with options as AbstractActions,
  * an AbstractAction must provide:

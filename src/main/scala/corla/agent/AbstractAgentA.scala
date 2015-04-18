@@ -1,4 +1,4 @@
-package corla.rl.v7
+package corla
 package agent
 
 import corla.memory.Memory3

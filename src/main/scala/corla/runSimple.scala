@@ -1,11 +1,12 @@
-package corla.rl.v7
+package corla
 
+import corla.action.AbstractAction
 import corla.memory.Memory3
-import corla.rl.{Reward, Next}
+import corla.Reward
 
 import scalaz._
-import syntax.monad._
-import std.vector._
+import scalaz.std.vector._
+import scalaz.syntax.monad._
 
 object runSimple {
   /** `_s` is only used to construct Experience;

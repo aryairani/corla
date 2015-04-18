@@ -45,7 +45,7 @@ object NESet {
     def filter(p: A => Boolean): Set[A] = toSet.filter(p)
   }
 
-  def argmaxesBy[F[_],A,B](fa: F[A])(f: A => B)(implicit F: Foldable1[F], ord: math.Ordering[B]): NESet[A] =
+  def argmaxesBy1[F[_],A,B](fa: F[A])(f: A => B)(implicit F: Foldable1[F], ord: math.Ordering[B]): NESet[A] =
     F.foldMapLeft1[A,(NESet[A],Option[B])](fa)(a => (NESet(a),Some(f(a)))) {
       case (maxes @ (as, bs @ Some(b0)), a) =>
         val b = f(a)
