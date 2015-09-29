@@ -2,9 +2,6 @@ package corla.memory
 
 import scalaz.Traverse
 
-/**
- * Created by arya on 12/10/14.
- */
 case class PrimitiveMemory(isFirstAction: Boolean) extends AnyVal
 object PrimitiveMemory {
   implicit def primitiveMemory2[S,A]: EmptyMemory2[PrimitiveMemory,S,A] = new EmptyMemory2[PrimitiveMemory, S,A] {

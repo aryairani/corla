@@ -1,16 +1,14 @@
 package corla
 
+import corla.action.SMOption
+import corla.memory.Memory3.Next
 import corla.misc.{NESet, DiscreteH}
-import corla.Reward
 import corla.agent.AgentA
 import qlearning.{QLearner, StationaryQLearner}
 
 import scalaz._, Id._, Maybe._
 import scalaz.effect.IO
 
-/**
- * Created by arya on 12/22/14.
- */
 object Examples {
   type FullState = (Int,SimpleState)
 

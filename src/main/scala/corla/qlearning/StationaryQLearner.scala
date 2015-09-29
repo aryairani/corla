@@ -1,16 +1,13 @@
 package corla.qlearning
 
-import corla.{Reward, Utility, Next, mapLensDefault}
-import corla.memory.{EmptyMemory3, NativeSingle3, Memory3}
+import corla.{Reward, Utility, mapLensDefault}
+import corla.memory.{EmptyMemory3, NativeSingle3, Memory3}, Memory3.Next
 import corla.misc.{NESet, ScalazLensCompatibility}
 import monocle.macros.Lenses
 import NESet._
 
 import scalaz._, Scalaz._
 import ScalazLensCompatibility._
-/**
-* Created by arya on 12/20/14.
-*/
 
 /** Memory structure for a stationary q-learner.
   * Includes sparse q-table // todo could be made sparser

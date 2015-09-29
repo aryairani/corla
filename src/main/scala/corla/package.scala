@@ -4,13 +4,9 @@ import corla.misc.PDF, PDF.pdfSyntax
 import scalaz._, Ordering._, Maybe._, Scalaz._
 import monocle.Lens
 
-/**
- * Created by arya on 12/8/14.
- */
 package object corla extends mixfunctions with syntax with types {
   implicit val probabilityAdditiveMonoid = new Monoid[Probability] {
     def zero: Probability = 0
-
     def append(f1: Probability, f2: => Probability): Probability = f1 + f2
   }
 

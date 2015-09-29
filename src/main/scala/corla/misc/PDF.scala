@@ -5,9 +5,6 @@ import corla.misc.NESet._
 
 import scalaz._
 
-/**
- * Created by arya on 12/5/14.
- */
 trait PDF[P[_]] extends Monad[P] {
 	def pdf[A](p: P[A])(a: A): Probability
 	def uniform[A](values: NESet[A]): P[A]

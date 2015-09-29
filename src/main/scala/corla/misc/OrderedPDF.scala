@@ -3,9 +3,7 @@ package corla.misc
 import corla.Probability
 import corla.misc.NEOSet._
 import scalaz._
-/**
- * Created by arya on 12/8/14.
- */
+
 object OrderedPDF {
    def apply[P[_]:OrderedPDF] = implicitly[OrderedPDF[P]]
  }

@@ -2,7 +2,7 @@ package corla
 
 import corla.action.AbstractAction
 import corla.memory.Memory3
-import corla.Reward
+import corla.memory.Memory3.Next
 
 import scalaz._
 import scalaz.std.vector._

@@ -4,9 +4,6 @@ import scalaz._
 import scalaz.syntax.traverse._
 import std.list._ // Applicative[List]
 
-/**
- * Created by arya on 12/8/14.
- */
 object MapUtil {
   implicit class MapHelper[A,B](m: Map[A,B]) {
     def mapKeysWith[C](f: A => C, f2: (B, B) => B): Map[C,B] =

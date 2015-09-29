@@ -1,9 +1,5 @@
 package corla.misc
 
-/**
- * Created by arya on 12/8/14.
- */
-
 import scalaz.Ordering._
 import scalaz._
 

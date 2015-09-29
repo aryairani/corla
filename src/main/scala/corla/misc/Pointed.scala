@@ -2,9 +2,6 @@ package corla.misc
 
 import scalaz._
 
-/**
- * Created by arya on 12/8/14.
- */
 trait Pointed[F[_]] {
   def point[A](a: A): F[A]
 }

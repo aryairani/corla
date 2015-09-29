@@ -1,5 +1,6 @@
 package corla
 
+import corla.memory.Memory3.Next
 import corla.misc.NESet._
 
 import scalaz.Maybe

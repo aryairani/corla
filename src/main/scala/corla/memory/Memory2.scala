@@ -4,10 +4,7 @@ import corla.Reward
 
 import scalaz._
 
-/**
- * Created by arya on 12/19/14.
- */
-/** Receives next s when adding experience */
+/** Receives next `s` when adding experience */
 trait Memory2[M,S,A] { self =>
   def addExperience: ((S,A,Reward,S)) => M => M
   def addBatchExperience[F[_]:Traverse]: F[(S,A,Reward,S)] => M => M

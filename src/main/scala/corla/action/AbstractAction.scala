@@ -2,6 +2,7 @@ package corla.action
 
 import corla._
 import corla.memory.Memory3
+import corla.memory.Memory3.Next
 
 import scalaz._
 import scalaz.syntax.monad._

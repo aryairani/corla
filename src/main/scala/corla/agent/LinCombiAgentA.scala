@@ -1,6 +1,7 @@
 package corla.agent
 
 import corla.memory.Memory3
+import corla.memory.Memory3.Next
 import corla.misc.PDF
 import corla._
 

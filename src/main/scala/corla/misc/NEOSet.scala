@@ -3,10 +3,6 @@ package corla.misc
 import scalaz.Ordering._
 import scalaz._
 
-/**
- * Created by arya on 12/5/14.
- */
-
 object NEOSet {
   type NEOSet[A] = OneAnd[ISet,A]
   def apply[A:Order](head: A, tail: ISet[A]): NEOSet[A] = OneAnd[ISet,A](head, tail delete head)

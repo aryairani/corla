@@ -1,5 +1,9 @@
 scalaVersion := "2.11.6"
 
+name := "corla"
+
+organization := "net.arya"
+
 resolvers += Resolver.sonatypeRepo("releases")
 
 libraryDependencies ++= Seq(

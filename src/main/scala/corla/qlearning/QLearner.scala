@@ -3,10 +3,6 @@ package corla.qlearning
 import corla.memory.{NativeSingle3, Memory3}
 import corla.Utility
 
-/**
-* Created by arya on 12/20/14.
-*/
-
 trait QLookup[M,S,A] {
   def qlookup: M => S => A => Utility
 }

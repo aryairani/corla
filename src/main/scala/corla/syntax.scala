@@ -3,7 +3,6 @@ package corla
 import corla.misc.PDF
 
 import scalaz.Maybe._
-import scalaz._
 
 trait syntax {
 

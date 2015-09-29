@@ -1,15 +1,11 @@
 package corla.memory
 
-import corla.Next
-import corla.memory.Memory3.mapExperience2
 import corla._
+import corla.memory.Memory3.mapExperience2
+import corla.memory.Memory3.Next
 
 import scalaz._
 import scalaz.syntax.traverse._
-
-/**
- * Created by arya on 12/20/14.
- */
 
 /** Receives Next s/as when adding experience */
 trait Memory3[M,S,A] { self =>
@@ -50,6 +46,15 @@ object Memory3 {
     def addBatchExperience[F[_]:Traverse]: F[(S,A,Reward,Next[S,A])] => M => M =
       M.addBatchExperience[F] compose (_.map(removeNextActions))
   }
+
+  case class Next[S,A](s: S, as: Maybe[Actions[A]]) {
+    def map[T](f: S => T): Next[T,A] = Next(f(s), as)
+  }
+
+  object Next {
+    def just[S,A](s: S, as: Actions[A]) = Next[S,A](s, Maybe.just(as))
+  }
+
 }
 
 /** Memory types that implement Empty can be instantiated without extra parameters */

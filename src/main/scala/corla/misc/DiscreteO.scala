@@ -4,9 +4,6 @@ import corla.Probability
 
 import scalaz._, Maybe._
 
-/**
- * Created by arya on 12/6/14.
- */
 /** Discrete distribution backed by ordered set */
 class DiscreteO[A](private val pdf: A ==>> Probability) {
 

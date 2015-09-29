@@ -4,9 +4,6 @@ import monocle.PLens
 
 import scalaz._
 
-/**
- * Created by arya on 1/27/15.
- */
 trait ScalazLensCompatibility {
   implicit class MonocleScalazLensSyntax[S,T,A,B](l: monocle.PLens[S,T,A,B]) {
 

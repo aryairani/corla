@@ -7,9 +7,6 @@ import syntax.traverse._
 import std.map._
 import std.iterable._
 
-/**
- * Created by arya on 12/8/14.
- */
 class DiscreteUnsafe[A](private val pdfMap: Map[A,Probability]) {
 
   def map[B](f: A => B): DiscreteUnsafe[B] = new DiscreteUnsafe(

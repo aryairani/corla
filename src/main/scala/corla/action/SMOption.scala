@@ -1,10 +1,7 @@
-package corla
+package corla.action
 
-/**
- * Created by arya on 12/19/14.
- */
-
-import corla.action.AbstractAction
+import corla._
+import corla.memory.Memory3.Next
 import corla.memory.{EmptyMemory3, Memory3, PrimitiveMemory}
 
 import scalaz._, Scalaz._

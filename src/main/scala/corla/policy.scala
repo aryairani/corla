@@ -5,9 +5,7 @@ import corla.misc.NESet.argmaxesBy1
 import corla.qlearning.QLookup
 
 import scalaz._, Scalaz._
-/**
- * Created by arya on 12/20/14.
- */
+
 package object policy {
   // a deterministic policy which takes a greedy action
   def greedyDeterministicPolicy[S,A,M,P[_]](implicit q: QLookup[M,S,A], P:Applicative[P]): GenPolicyA[S,A,M,P] =
