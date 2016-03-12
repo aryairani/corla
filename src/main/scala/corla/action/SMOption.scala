@@ -2,7 +2,7 @@ package corla.action
 
 import corla._
 import corla.memory.Memory3.Next
-import corla.memory.{EmptyMemory3, Memory3, PrimitiveMemory}
+import corla.memory.{EmptyMemory3, Memory3, SMOPrimitiveMemory}
 
 import scalaz._, Scalaz._
 
@@ -29,8 +29,8 @@ case class SMOption[S,A,M0,P[_]](o: GenPolicy[S,Maybe[A],M0,P])
 
 object SMOption {
 
-  def fromPrimitive[S,A,P[_]:Applicative](a: A): SMOption[S,A,PrimitiveMemory,P] =
-    SMOption[S,A,PrimitiveMemory,P]((m,s) => m.isFirstAction.guard[Maybe](a).point[P])
+  def fromPrimitive[S,A,P[_]:Applicative](a: A): SMOption[S,A,SMOPrimitiveMemory,P] =
+    SMOption[S,A,SMOPrimitiveMemory,P]((m,s) => m.hasActed.prevent[Maybe](a).point[P])
 
   implicit def abstractAction[S,A,M,P[_]](implicit M:EmptyMemory3[M,S,A]): AbstractAction[S,A,SMOption[S,A,M,P]] =
     new SmoAbstractAction[S,A,M,P]
