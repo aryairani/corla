@@ -1,4 +1,4 @@
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.8"
 
 name := "corla"
 
@@ -32,13 +32,10 @@ scalacOptions in (Compile, compile) ++= Seq(
   "-Xfatal-warnings"
 )
 
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.1" cross CrossVersion.full)
-
-resolvers += "bintray/non" at "http://dl.bintray.com/non/maven"
-addCompilerPlugin("org.spire-math"  %% "kind-projector" % "0.6.3")
+addCompilerPlugin("org.spire-math" %% "kind-projector" % "0.9.3")
 
 libraryDependencies ++= Seq("org.specs2" %% "specs2-scalacheck" % "3.6.4" % "test")
 scalacOptions in Test ++= Seq("-Yrangepos")
 
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.0.1" cross CrossVersion.full)
-libraryDependencies += "com.github.mpilquist" %% "simulacrum" % "0.4.0"
+addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+libraryDependencies += "com.github.mpilquist" %% "simulacrum" % "0.10.0"

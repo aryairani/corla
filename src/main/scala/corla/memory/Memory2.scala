@@ -39,6 +39,7 @@ object Memory2 {
   }
 }
 
+/** extension of Memory2 with a known empty state */
 trait EmptyMemory2[M,S,A] extends Memory2[M,S,A] {
   def empty: M
 }

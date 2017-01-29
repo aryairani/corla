@@ -17,15 +17,20 @@ trait Memory3[M,S,A] { self =>
     def addBatchExperience[F[_]:Traverse] = self.addBatchExperience[F] compose (_.map(mapExperience2(f)))
   }
 }
+
+/** Mix-in to delegate addExperience to addBatchExperience */
 trait NativeBatch3[M,S,A] extends Memory3[M,S,A] {
   def addExperience: ((S,A,Reward,Next[S,A])) => M => M =
     addBatchExperience.apply
 }
+
+/** Mix-in to delegate addBatchExperience to addExperience */
 trait NativeSingle3[M,S,A] extends Memory3[M,S,A] {
   /** applies the updates in reverse order -- should be more efficient than reverse order */
   def addBatchExperience[F[_]:Traverse]: F[(S,A,Reward,Next[S,A])] => M => M =
     _.traverseU(addExperience andThen Endo.apply).run
 }
+
 object Memory3 {
   def mapExperience2[S,T,A](f: S => T)(e: ExperienceA[S,A]): ExperienceA[T,A] = e.map(f)
 

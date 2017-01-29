@@ -10,8 +10,8 @@ import syntax.monad._
 
 import scalaz.Traverse
 
-case class LinCombiAgent[S,A,P[_]:PDF](m: P[AbstractAgent[S,A,P]])
-  extends Agent.Aux[S,A,P[AbstractAgent[S,A,P]],P] {
+case class LinCombiAgent[S,A,P[_]:PDF](m: P[Agent[S,A,P]])
+  extends Agent.Aux[S,A,P[Agent[S,A,P]],P] {
   val M = new Memory3[M, S, A] {
     def addExperience: ((S, A, Reward, Next[S, A])) => (M) => M =
       e => m => m.map(agent => Agent(agent.π, agent.M.addExperience.apply(e)(agent.m))(agent.M))

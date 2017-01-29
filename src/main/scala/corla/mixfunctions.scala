@@ -9,12 +9,12 @@ import scalaz.syntax.monad._
 
 trait mixfunctions {
 
-    def constrainOption[S,A,M,P[_]:Functor](c: ConstraintSA[S,A], o: GenOption[S,A,M,P])
-                                           (implicit M:EmptyMemory2[M,S,A]): GenOption[S,A,M,P] =
-      (m,s) => o(m,s).map {
-        case Just(a) => if (c(s,a) == Avoid) Empty() else Just(a)
-        case Empty() => Empty()
-      }
+  def constrainOption[S,A,M,P[_]:Functor](c: ConstraintSA[S,A], o: GenOption[S,A,M,P])
+                                         (implicit M:EmptyMemory2[M,S,A]): GenOption[S,A,M,P] =
+    (m,s) => o(m,s).map {
+      case Just(a) => if (c(s,a) == Avoid) Empty() else Just(a)
+      case Empty() => Empty()
+    }
 
   def biasPolicy[S,A,M,P[_]:PDF](pref: PrefSA[S,A], π: GenPolicy[S,A,M,P]): MaybePolicy[S,A,M,P] =
     (m,s) => π(m,s).reweight { case (a,p) => p * pref(s,a) }

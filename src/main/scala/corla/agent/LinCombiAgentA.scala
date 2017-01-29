@@ -8,8 +8,8 @@ import corla._
 import scalaz._
 import syntax.monad._
 
-case class LinCombiAgentA[S,A,P[_]:PDF](m: P[AbstractAgentA[S,A,P]])
-  extends AbstractAgentA.Aux[S,A,P[AbstractAgentA[S,A,P]],P] {
+case class LinCombiAgentA[S,A,P[_]:PDF](m: P[AgentA[S,A,P]])
+  extends AgentA.Aux[S,A,P[AgentA[S,A,P]],P] {
   val M = new Memory3[M,S,A] {
     override def addExperience: ((S, A, Reward, Next[S, A])) => (M) => M =
       e => m => m.map(agent => AgentA(agent.π, agent.M.addExperience.apply(e)(agent.m))(agent.M))

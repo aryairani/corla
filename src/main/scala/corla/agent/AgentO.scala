@@ -11,7 +11,7 @@ import scalaz._
   * But then why EmptyMemory?
   * May not need this class.... we'll see.
   */
-sealed trait AbstractAgentO[S,A,P[_]] {
+sealed trait AgentO[S,A,P[_]] {
   type M
   def M: EmptyMemory3[M,S,A]
   def m: M
@@ -21,11 +21,9 @@ sealed trait AbstractAgentO[S,A,P[_]] {
   def contramap[T](f: T => S) = AgentO[T,A,M,P]((m,t) => o(m,f(t)), m)(M.contramap(f))
 }
 
-object AbstractAgentO {
-  trait Aux[S,A,M0,P[_]] extends AbstractAgentO[S,A,P] {
-    type M = M0
-  }
-}
+object AgentO {
+  def apply[S,A,_M,P[_]](_o: GenPolicy[S,Maybe[A],_M,P], _m: _M)(implicit _M: EmptyMemory3[_M,S,A]): Aux[S,A,_M,P] =
+    new Aux[S,A,_M,P] { def M = _M; def m = _m; def o = _o }
 
-case class AgentO[S,A,M0,P[_]](o: GenPolicy[S,Maybe[A],M0,P], m: M0)(implicit M0: EmptyMemory3[M0,S,A])
-  extends AbstractAgentO.Aux[S,A,M0,P] { def M = M0 }
+  trait Aux[S,A,_M,P[_]] extends AgentO[S,A,P] { type M = _M }
+}
