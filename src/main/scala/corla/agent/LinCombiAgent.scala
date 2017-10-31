@@ -16,8 +16,8 @@ case class LinCombiAgent[S,A,P[_]:PDF](m: P[Agent[S,A,P]])
     def addExperience: ((S, A, Reward, Next[S, A])) => (M) => M =
       e => m => m.map(agent => Agent(agent.π, agent.M.addExperience.apply(e)(agent.m))(agent.M))
 
-    def addBatchExperience[F[_] : Traverse]: (F[(S, A, Reward, Next[S, A])]) => (M) => M =
-      fe => m => m.map(a => Agent(a.π, a.M.addBatchExperience[F].apply(fe)(a.m))(a.M))
+    def addBatchExperience[F[_] : Traverse]: F[(S, A, Reward, Next[S, A])] => M => M =
+      fe => m => m.map(agent => Agent(agent.π, agent.M.addBatchExperience[F].apply(fe)(agent.m))(agent.M))
   }
 
   def π: (M,S) => P[A] = (m,s) => m.flatMap(a => a.π(a.m,s))

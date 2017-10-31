@@ -34,12 +34,14 @@ trait NativeSingle3[M,S,A] extends Memory3[M,S,A] {
 object Memory3 {
   def mapExperience2[S,T,A](f: S => T)(e: ExperienceA[S,A]): ExperienceA[T,A] = e.map(f)
 
+  /** Markov is an implementation for a memory that doesn't store anything. */
   implicit def markov[S,A] = new EmptyMemory3[Unit,S,A] {
     def empty: Unit = ()
     def addExperience = _ => _ => ()
     def addBatchExperience[F[_] : Traverse] = _ => _ => ()
   }
 
+  /** Memory2 doesn't learn from Next#actions */
   implicit def fromMemory2[M,S,A](implicit M: Memory2[M,S,A]) = new Memory3[M,S,A] {
     def removeNextActions: ((S,A,Reward,Next[S,A])) => (S,A,Reward,S) = {
       case (s,a,r,Next(s2,_)) => (s,a,r,s2)
@@ -71,6 +73,7 @@ trait EmptyMemory3[M,S,A] extends Memory3[M,S,A] { self =>
     def addBatchExperience[F[_]:Traverse] = self.addBatchExperience[F] compose (_.map(mapExperience2(f)))
   }
 }
+
 object EmptyMemory3 {
   implicit def fromEmptyMemory2[M,S,A](implicit M2: EmptyMemory2[M,S,A], M3: Memory3[M,S,A]) = new EmptyMemory3[M,S,A] {
     def empty: M = M2.empty

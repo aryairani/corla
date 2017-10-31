@@ -3,6 +3,7 @@ package agent
 
 import corla.memory.Memory3
 
+/** An Agent merely pairs a policy with an operational Memory */
 sealed trait Agent[S,A,P[_]] { self =>
   type M
   implicit def M: Memory3[M,S,A]
@@ -15,8 +16,8 @@ sealed trait Agent[S,A,P[_]] { self =>
 }
 
 object Agent {
-  def apply[S,A,_M,P[_]](_π: GenPolicy[S,A,_M,P], _m: _M)(implicit _M:Memory3[_M,S,A]): Aux[S,A,_M,P] =
-    new Aux[S,A,_M,P] { def M = _M; def m = _m; def π = _π }
+  def apply[S,A,M0,P[_]](_π: GenPolicy[S,A,M0,P], _m: M0)(implicit _M:Memory3[M0,S,A]): Aux[S,A,M0,P] =
+    new Aux[S,A,M0,P] { def M = _M; def m = _m; def π = _π }
 
   trait Aux[S,A,M0,P[_]] extends Agent[S,A,P] { type M = M0 }
 }
